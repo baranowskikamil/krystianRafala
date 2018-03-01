@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 import static turbo.CarStatus.IN_RIDE;
 import static turbo.CarStatus.WAITING_FOR_RIDE;
-import static turbo.RideStatus.DURING_RIDE;
-import static turbo.RideStatus.FINISHED;
-import static turbo.RideStatus.WAITING_FOR_START;
+import static turbo.RideStatus.*;
 
 
 @Data
@@ -55,12 +53,12 @@ public class Car {
         }
 
         if (this.getPosition().getXAxis() < target) {
-            targetPosition.setXAxis(targetPosition.getXAxis() + 1);
+            this.position.setXAxis(this.position.getXAxis() + 1);
             return;
         }
 
         if (this.getPosition().getXAxis() > target) {
-            targetPosition.setXAxis(targetPosition.getXAxis() - 1);
+            this.position.setXAxis(this.position.getXAxis() - 1);
             return;
         }
     }
@@ -72,11 +70,12 @@ public class Car {
         }
 
         if (this.getPosition().getYAxis() < target) {
-            targetPosition.setYAxis(targetPosition.getYAxis() + 1);
+
+            this.position.setYAxis(this.position.getYAxis() + 1);
             return;
         }
         if (this.getPosition().getYAxis() > target) {
-            targetPosition.setYAxis(targetPosition.getYAxis() - 1);
+            this.position.setYAxis(this.position.getYAxis() - 1);
             return;
         }
 
