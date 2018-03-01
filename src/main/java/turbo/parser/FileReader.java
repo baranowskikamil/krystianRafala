@@ -16,9 +16,13 @@ import java.util.List;
  * Created by Qenlin on 01.03.2018.
  */
 public class FileReader {
+    private StartingInfo startingInfo = new StartingInfo();
 
-    StartingInfo startingInfo = new StartingInfo();
-    List<Ride> rides = new LinkedList<Ride>();
+    public StartingInfo getStartingInfo() {
+        return startingInfo;
+    }
+
+    private List<Ride> rides = new LinkedList<Ride>();
 
     public FileReader(String fileName) throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -36,12 +40,14 @@ public class FileReader {
             rides.add(ride);
         }
 
+        startingInfo.setRides(rides);
+
     }
 
     private void createStartingInfo(String firstLine) throws IOException {
         String[] split = firstLine.split(" ");
         startingInfo = new StartingInfo(new Integer(split[0]), new Integer(split[1]), new Integer(split[2]),
-                new Integer(split[3]), new Integer(split[4]), new Integer(split[5]));
+                new Integer(split[3]), new Integer(split[4]), new Integer(split[5]), null);
         System.out.println(startingInfo.toString());
     }
 

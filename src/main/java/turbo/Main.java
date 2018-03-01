@@ -10,7 +10,10 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileReader fileReader = new FileReader("a_example.in");
+        StartingInfo startingInfoByKamil = new FileReader("a_example.in").getStartingInfo();
+
+        System.out.println(startingInfoByKamil);
+
         Integer time = 0;
         Integer t = 10;
 
