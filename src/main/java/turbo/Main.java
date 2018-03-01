@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
 
+import static turbo.CarStatus.*;
+
 /**
  * Created by Qenlin on 01.03.2018.
  */
@@ -26,9 +28,16 @@ public class Main {
             System.out.println(cars);
 
             List<Car> freeCar = cars.stream()
-                    .filter(car -> CarStatus.BENCH.equals(car.getStatus()))
+                    .filter(car -> BENCH.equals(car.getStatus()))
                     .collect(Collectors.toList());
 
+            List<Car> inRideCar = cars.stream()
+                    .filter(car -> IN_RIDE.equals(car.getStatus()))
+                    .collect(Collectors.toList());
+
+//            freeCar.forEach(freeCar ->{
+//                    freeCar.setAssignedRide();
+//            });
             System.out.println(freeCar);
 
 
