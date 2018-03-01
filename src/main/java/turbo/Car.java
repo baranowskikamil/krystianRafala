@@ -21,6 +21,11 @@ public class Car {
 
     }
 
+    public void assignedRide(Ride ride){
+        this.assignedRide = ride;
+        this.status = CarStatus.IN_RIDE;
+    }
+
     private void moveHorizontal() {
         if (position.getXAxis() == assignedRide.getStartPoint().getXAxis()) {
             return;

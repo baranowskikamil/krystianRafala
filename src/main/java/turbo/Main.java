@@ -5,6 +5,7 @@ import turbo.parser.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,6 +20,9 @@ public class Main {
 
         Integer time = 0;
 
+        ListIterator<Ride> iterator = startingInfoByKamil.getRides().listIterator();
+
+
         while (time < startingInfoByKamil.getTime()) {
 
             List<Car> freeCar = cars.stream()
@@ -27,6 +31,19 @@ public class Main {
 
             System.out.println(freeCar);
 
+
+            freeCar.stream()
+                    .forEach(car -> {
+                        if (iterator.hasNext()) {
+                            car.assignedRide(iterator.next());
+                        }
+                    });
+
+            //assign car to route
+
+            //make moves
+
+            //release car
 
             time++;
         }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Data
@@ -19,5 +20,5 @@ public class StartingInfo {
     private Integer numberOfRides;
     private Integer bonus;
     private Integer time;
-    private List<Ride> rides;
+    private LinkedList<Ride> rides;
 }

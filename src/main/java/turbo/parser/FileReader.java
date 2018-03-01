@@ -24,7 +24,7 @@ public class FileReader {
         return startingInfo;
     }
 
-    private List<Ride> rides = new LinkedList<>();
+    private LinkedList<Ride> rides = new LinkedList<>();
 
     public FileReader(String fileName) throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
