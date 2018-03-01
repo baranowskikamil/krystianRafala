@@ -41,6 +41,8 @@ public class Car {
     }
 
     public void assignedRide(Ride ride) {
+        ride.setRideStatus(RideStatus.WAITING_FOR_CAR);
+
         this.assignedRide = ride;
         this.status = CarStatus.IN_RIDE;
     }

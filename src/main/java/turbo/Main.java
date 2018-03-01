@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
 
-import static turbo.CarStatus.*;
+import static turbo.CarStatus.BENCH;
 
 /**
  * Created by Qenlin on 01.03.2018.
@@ -31,13 +31,7 @@ public class Main {
                     .filter(car -> BENCH.equals(car.getStatus()))
                     .collect(Collectors.toList());
 
-            List<Car> inRideCar = cars.stream()
-                    .filter(car -> IN_RIDE.equals(car.getStatus()))
-                    .collect(Collectors.toList());
 
-//            freeCar.forEach(freeCar ->{
-//                    freeCar.setAssignedRide();
-//            });
             System.out.println(freeCar);
 
 
@@ -48,18 +42,25 @@ public class Main {
                         }
                     });
 
+            Integer finalTime = time;
             cars.stream()
                     .forEach(car -> {
                         if (car.getAssignedRide().getRideStatus().equals(RideStatus.WAITING_FOR_CAR)
-                                && car.getStatus().equals(CarStatus)
+                                && car.getStatus().equals(CarStatus.IN_RIDE)) {
 
-                                ) {
+                            System.out.println("A");
 
+                            car.moveToTarget(car.getAssignedRide().getStartPoint(), finalTime);
+                            return;
                         }
-                        this.status = CarStatus.IN_RIDE;
-                        ride.setRideStatus(RideStatus.WAITING_FOR_CAR)
+                        if (car.getAssignedRide().getRideStatus().equals(RideStatus.DURING_RIDE)
+                                && car.getStatus().equals(CarStatus.IN_RIDE)) {
 
-                        car.moveToTarget()
+                            System.out.println("B");
+
+                            car.moveToTarget(car.getAssignedRide().getFinishPoint(), finalTime);
+                            return;
+                        }
                     });
 
 
