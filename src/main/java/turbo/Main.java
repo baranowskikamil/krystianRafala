@@ -39,7 +39,19 @@ public class Main {
                         }
                     });
 
+            cars.stream()
+                    .forEach(car -> {
+                        if (car.getAssignedRide().getRideStatus().equals(RideStatus.WAITING_FOR_CAR)
+                                && car.getStatus().equals(CarStatus)
 
+                                ) {
+
+                        }
+                        this.status = CarStatus.IN_RIDE;
+                        ride.setRideStatus(RideStatus.WAITING_FOR_CAR)
+
+                        car.moveToTarget()
+                    });
 
 
             //assign car to route
