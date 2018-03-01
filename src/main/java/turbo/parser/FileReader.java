@@ -59,7 +59,7 @@ public class FileReader {
                 new Integer(split[5]),
                 new Position(new Integer(split[0]), new Integer(split[1])),
                 new Position(new Integer(split[2]), new Integer(split[3])),
-                RideStatus.WAITING_FOR_CAR);
+                RideStatus.WAITING_FOR_ASSIGNMENT);
         return ride;
     }
 }
