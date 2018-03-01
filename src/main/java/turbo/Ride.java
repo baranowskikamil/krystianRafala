@@ -18,6 +18,7 @@ public class Ride {
     private Integer latestFinish;
     private Position startPoint;
     private Position finishPoint;
+    private RideStatus rideStatus;
 
     public Integer getDistance() {
         return Math.abs(startPoint.getXAxis() - finishPoint.getXAxis())
