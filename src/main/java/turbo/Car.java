@@ -6,8 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import static turbo.CarStatus.IN_RIDE;
+import static turbo.CarStatus.WAITING_FOR_RIDE;
 import static turbo.RideStatus.DURING_RIDE;
 import static turbo.RideStatus.FINISHED;
+import static turbo.RideStatus.WAITING_FOR_START;
 
 
 @Data
@@ -19,7 +21,7 @@ public class Car {
     private Ride assignedRide;
     private CarStatus status = CarStatus.BENCH;
 
-    public void moveToTarget(Position targetPosition) {
+    public void moveToTarget(Position targetPosition, Integer time) {
         moveHorizontal(targetPosition);
 
         if (assignedRide.getRideStatus().equals(DURING_RIDE) && position.equals(assignedRide.getFinishPoint())) {
@@ -28,13 +30,17 @@ public class Car {
         }
 
         if (assignedRide.getRideStatus().equals(RideStatus.WAITING_FOR_CAR) && position.equals(assignedRide.getStartPoint())) {
+            if (time < assignedRide.getEarlierStart()) {
+                setStatus(WAITING_FOR_RIDE);
+                assignedRide.setRideStatus(WAITING_FOR_START);
+                return;
+            }
             setStatus(IN_RIDE);
             assignedRide.setRideStatus(DURING_RIDE);
         }
-
     }
-    
-    public void assignedRide(Ride ride){
+
+    public void assignedRide(Ride ride) {
         this.assignedRide = ride;
         this.status = CarStatus.IN_RIDE;
     }
@@ -58,7 +64,6 @@ public class Car {
     }
 
     private void moveVertical(Position targetPosition) {
-
         Integer target = targetPosition.getYAxis();
         if (targetPosition.getYAxis() == target) {
             return;
