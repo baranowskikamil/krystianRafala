@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Created by Qenlin on 01.03.2018.
@@ -24,6 +23,7 @@ public class Main {
 
 
         while (time < startingInfoByKamil.getTime()) {
+            System.out.println(cars);
 
             List<Car> freeCar = cars.stream()
                     .filter(car -> CarStatus.BENCH.equals(car.getStatus()))
@@ -39,6 +39,9 @@ public class Main {
                         }
                     });
 
+
+
+
             //assign car to route
 
             //make moves
@@ -51,8 +54,9 @@ public class Main {
 
     private static List<Car> createCars(int number) {
         List<Car> cars = new ArrayList<>();
-        IntStream.of(number)
-                .forEach(t -> cars.add(new Car()));
+        for (int i = 0; i < number; i++) {
+            cars.add(new Car());
+        }
         return cars;
     }
 }
