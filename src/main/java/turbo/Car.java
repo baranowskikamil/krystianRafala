@@ -31,4 +31,20 @@ public class Car {
             position.setXAxis();
             }
     }
+
+    private void moveVertical() {
+        if (position.getYAxis() == assignedRide.getStartPoint().getYAxis()) {
+            return;
+        }
+
+        if (position.getYAxis() < assignedRide.getStartPoint().getYAxis()) {
+            position.setYAxis(position.getYAxis()+1);
+            return;
+        }
+        if (position.getYAxis() > assignedRide.getStartPoint().getYAxis()) {
+            position.setYAxis(position.getYAxis()-1);
+            return;
+        }
+
+    }
 }
