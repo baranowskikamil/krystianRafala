@@ -19,7 +19,7 @@ public class Ride {
     private Pair<Integer, Integer> startPoint;
     private Pair<Integer, Integer> finishPoint;
     private RideStatus rideStatus;
-    
+
     public Integer getDistance() {
         return Math.abs(startPoint.getKey() - finishPoint.getKey())
                 + Math.abs(startPoint.getValue() - finishPoint.getValue());
