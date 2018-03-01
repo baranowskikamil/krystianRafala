@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class Ride {
     private Integer earlierStart;
     private Integer latestFinish;
-    private Pair<Integer, Integer> startPoint;
-    private Pair<Integer, Integer> finishPoint;
+    private Position startPoint;
+    private Position finishPoint;
 
     public Integer getDistance() {
-        return Math.abs(startPoint.getKey() - finishPoint.getKey())
-                + Math.abs(startPoint.getValue() - finishPoint.getValue());
+        return Math.abs(startPoint.getXAxis() - finishPoint.getXAxis())
+                + Math.abs(startPoint.getYAxis() - finishPoint.getYAxis());
     }
 }

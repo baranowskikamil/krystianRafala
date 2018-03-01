@@ -12,7 +12,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Car {
-    private Pair<Integer, Integer> position;
+    private Position position;
+    private Ride assignedRide;
     private RideStatus status;
 
+    public void moveToTarget() {
+        moveHorizontal();
+        moveVertical();
+
+    }
+
+    private void moveHorizontal() {
+        if (position.getXAxis() == assignedRide.getStartPoint().getXAxis()) {
+            return;
+        }
+
+        if (position.getYAxis() < assignedRide.getStartPoint().getYAxis()) {
+            position.setXAxis();
+            }
+    }
 }
