@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by Qenlin on 01.03.2018.
@@ -33,7 +34,8 @@ public class Main {
 
     private static List<Car> createCars(int number) {
         List<Car> cars = new ArrayList<>();
-
+        IntStream.of(number)
+                .forEach(t -> cars.add(new Car()));
         return cars;
     }
 }
