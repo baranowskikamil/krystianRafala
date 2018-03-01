@@ -1,5 +1,6 @@
 package turbo;
 
+import javafx.util.Pair;
 import turbo.parser.FileReader;
 
 import java.io.IOException;
@@ -13,6 +14,13 @@ public class Main {
         Integer time = 0;
         Integer t = 10;
 
+        Ride ride1 = Ride.builder().earlierStart(2).latestFinish(9).startPoint(new Pair<>(0, 0)).finishPoint(new Pair<>(1, 3)).build();
+        Ride ride2 = Ride.builder().earlierStart(0).latestFinish(9).startPoint(new Pair<>(1, 2)).finishPoint(new Pair<>(1, 0)).build();
+        Ride ride3 = Ride.builder().earlierStart(0).latestFinish(9).startPoint(new Pair<>(2, 0)).finishPoint(new Pair<>(2, 2)).build();
+
+        StartingInfo startinginfo = StartingInfo.builder().bonus(2).column(4).fleet(2).numberOfRides(3).row(3).time(10).build();
+
+        
         while (time < t) {
 
         }
