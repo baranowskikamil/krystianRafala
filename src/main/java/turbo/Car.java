@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static turbo.CarStatus.IN_RIDE;
 import static turbo.RideStatus.DURING_RIDE;
 import static turbo.RideStatus.FINISHED;
 
@@ -26,8 +27,8 @@ public class Car {
             assignedRide.setRideStatus(FINISHED);
         }
 
-        if (assignedRide.getRideStatus().equals(RideStatus.WAITING_FOR_CAR) && position.equals(assignedRide.getFinishPoint())) {
-            setStatus(CarStatus.IN_RIDE);
+        if (assignedRide.getRideStatus().equals(RideStatus.WAITING_FOR_CAR) && position.equals(assignedRide.getStartPoint())) {
+            setStatus(IN_RIDE);
             assignedRide.setRideStatus(DURING_RIDE);
         }
 
