@@ -21,9 +21,6 @@ public class Car {
 
     }
 
-    private void moveVertical() {
-    }
-
     private void moveHorizontal() {
         if (position.getXAxis() == assignedRide.getStartPoint().getXAxis()) {
             return;
