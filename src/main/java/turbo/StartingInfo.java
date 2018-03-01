@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,8 @@ public class StartingInfo {
     private Integer row;
     private Integer column;
     private Integer fleet;
-    private Integer rides;
+    private Integer numberOfRides;
     private Integer bonus;
     private Integer time;
+    private List<Ride> rides;
 }
