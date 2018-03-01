@@ -49,17 +49,17 @@ public class Car {
 
     private void moveHorizontal(Position targetPosition) {
         Integer target = targetPosition.getXAxis();
-        if (targetPosition.getXAxis() == target) {
+        if (this.getPosition().getXAxis().equals(target)) {
             moveVertical(targetPosition);
             return;
         }
 
-        if (targetPosition.getXAxis() < target) {
+        if (this.getPosition().getXAxis() < target) {
             targetPosition.setXAxis(targetPosition.getXAxis() + 1);
             return;
         }
 
-        if (targetPosition.getXAxis() > target) {
+        if (this.getPosition().getXAxis() > target) {
             targetPosition.setXAxis(targetPosition.getXAxis() - 1);
             return;
         }
@@ -67,15 +67,15 @@ public class Car {
 
     private void moveVertical(Position targetPosition) {
         Integer target = targetPosition.getYAxis();
-        if (targetPosition.getYAxis() == target) {
+        if (this.getPosition().getYAxis().equals(target)) {
             return;
         }
 
-        if (targetPosition.getYAxis() < target) {
+        if (this.getPosition().getYAxis() < target) {
             targetPosition.setYAxis(targetPosition.getYAxis() + 1);
             return;
         }
-        if (targetPosition.getYAxis() > target) {
+        if (this.getPosition().getYAxis() > target) {
             targetPosition.setYAxis(targetPosition.getYAxis() - 1);
             return;
         }

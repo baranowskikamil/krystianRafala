@@ -1,6 +1,6 @@
 package turbo.parser;
 
-import javafx.util.Pair;
+
 import turbo.Position;
 import turbo.Ride;
 import turbo.RideStatus;
