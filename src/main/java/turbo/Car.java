@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Car {
-    private Position position;
+    private Position position = new Position(0, 0);
     private Ride assignedRide;
-    private CarStatus status;
+    private CarStatus status = CarStatus.BENCH;
 
     public void moveToTarget() {
         moveHorizontal();
@@ -37,11 +37,11 @@ public class Car {
         }
 
         if (position.getYAxis() < assignedRide.getStartPoint().getYAxis()) {
-            position.setYAxis(position.getYAxis()+1);
+            position.setYAxis(position.getYAxis() + 1);
             return;
         }
         if (position.getYAxis() > assignedRide.getStartPoint().getYAxis()) {
-            position.setYAxis(position.getYAxis()-1);
+            position.setYAxis(position.getYAxis() - 1);
             return;
         }
 
