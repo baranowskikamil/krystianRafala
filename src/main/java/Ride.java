@@ -1,23 +1,24 @@
 import javafx.util.Pair;
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by Qenlin on 01.03.2018.
  */
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Ride {
     private Integer earlierStart;
     private Integer latestFinish;
     private Pair<Integer, Integer> startPoint;
     private Pair<Integer, Integer> finishPoint;
 
-    public Integer getDistance(){
+    public Integer getDistance() {
 
-        return 
+        return 0;
     }
 }
