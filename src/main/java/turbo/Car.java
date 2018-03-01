@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Car {
     private Pair<Integer, Integer> position;
-    private RideStatus status;
+    private CarStatus status;
+
+
 
 }
