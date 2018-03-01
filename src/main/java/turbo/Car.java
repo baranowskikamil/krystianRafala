@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static turbo.CarStatus.IN_RIDE;
 import static turbo.CarStatus.WAITING_FOR_RIDE;
 import static turbo.RideStatus.*;
@@ -18,9 +21,20 @@ public class Car {
     private Position position = new Position(0, 0);
     private Ride assignedRide;
     private CarStatus status = CarStatus.BENCH;
+    private List<Integer> krystian = new ArrayList<>();
 
     public void moveToTarget(Position targetPosition, Integer time) {
-        moveHorizontal(targetPosition);
+
+        if (!(assignedRide.getRideStatus().equals(RideStatus.WAITING_FOR_START)
+                && status.equals(WAITING_FOR_RIDE)
+                && time < assignedRide.getEarlierStart())) {
+            status = IN_RIDE;
+            assignedRide.setRideStatus(RideStatus.DURING_RIDE);
+        }
+
+        if (status.equals(IN_RIDE)) {
+            moveHorizontal(targetPosition);
+        }
 
         if (assignedRide.getRideStatus().equals(DURING_RIDE) && position.equals(assignedRide.getFinishPoint())) {
             setStatus(CarStatus.BENCH);
@@ -38,9 +52,9 @@ public class Car {
         }
     }
 
-    public void assignedRide(Ride ride) {
+    public void assignedRide(Ride ride, Integer rrr) {
         ride.setRideStatus(RideStatus.WAITING_FOR_CAR);
-
+        krystian.add(rrr);
         this.assignedRide = ride;
         this.status = CarStatus.IN_RIDE;
     }

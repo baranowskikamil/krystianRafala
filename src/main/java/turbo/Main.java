@@ -1,9 +1,11 @@
 package turbo;
 
+import org.apache.commons.lang3.StringUtils;
 import turbo.parser.FileReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
@@ -16,7 +18,7 @@ import static turbo.CarStatus.BENCH;
 public class Main {
     public static void main(String[] args) throws IOException {
         StartingInfo startingInfoByKamil = new FileReader("a_example.in").getStartingInfo();
-
+        HashMap<Integer, List<Integer>> xd = new HashMap<>();
         List<Car> cars = createCars(startingInfoByKamil.getFleet());
 
         Integer time = 0;
@@ -25,19 +27,32 @@ public class Main {
 
 
         while (time < startingInfoByKamil.getTime()) {
-            System.out.println(cars);
 
             List<Car> freeCar = cars.stream()
                     .filter(car -> BENCH.equals(car.getStatus()))
                     .collect(Collectors.toList());
 
+//            freeCar.stream()
+//                    .filter(t -> t.getStatus().equals(CarStatus.BENCH))
+//                    .forEach(t -> {
+//                                List<Integer> integers = xd.get(cars.indexOf(t));
+//                                if (integers == null) {
+//                                    integers = new LinkedList<>();
+//                                }
+//
+//                                integers.add(startingInfoByKamil.getRides().indexOf(t.getAssignedRide()));
+//                                xd.put(freeCar.indexOf(t), integers);
+//
+//                            }
+//                    );
 
+//            System.out.println(freeCar);
 
 
             freeCar.stream()
                     .forEach(car -> {
                         if (iterator.hasNext()) {
-                            car.assignedRide(iterator.next());
+                            car.assignedRide(iterator.next(), iterator.nextIndex() - 1);
                         }
                     });
 
@@ -47,7 +62,6 @@ public class Main {
                         if (car.getAssignedRide().getRideStatus().equals(RideStatus.WAITING_FOR_CAR)
                                 && car.getStatus().equals(CarStatus.IN_RIDE)) {
 
-                            System.out.println("A");
 
                             car.moveToTarget(car.getAssignedRide().getStartPoint(), finalTime);
                             return;
@@ -55,7 +69,13 @@ public class Main {
                         if (car.getAssignedRide().getRideStatus().equals(RideStatus.DURING_RIDE)
                                 && car.getStatus().equals(CarStatus.IN_RIDE)) {
 
-                            System.out.println("B");
+
+                            car.moveToTarget(car.getAssignedRide().getFinishPoint(), finalTime);
+                            return;
+                        }
+                        if (car.getAssignedRide().getRideStatus().equals(RideStatus.WAITING_FOR_START)
+                                && car.getStatus().equals(CarStatus.WAITING_FOR_RIDE)) {
+
 
                             car.moveToTarget(car.getAssignedRide().getFinishPoint(), finalTime);
                             return;
@@ -70,6 +90,12 @@ public class Main {
             //release car
 
             time++;
+        }
+
+        for(Car car: cars){
+            System.out.print(car.getKrystian().size()+" ");
+            car.getKrystian().forEach(t->System.out.print(t+" "));
+            System.out.println();
         }
     }
 
