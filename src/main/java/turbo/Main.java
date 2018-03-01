@@ -5,6 +5,7 @@ import turbo.parser.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Qenlin on 01.03.2018.
@@ -15,12 +16,15 @@ public class Main {
 
         List<Car> cars = createCars(startingInfoByKamil.getFleet());
 
-        System.out.println(startingInfoByKamil);
-
         Integer time = 0;
-        Integer maxNumberOfTrip = startingInfoByKamil.getTime();
 
-        while (time < maxNumberOfTrip) {
+        while (time < startingInfoByKamil.getTime()) {
+
+            List<Car> freeCar = cars.stream()
+                    .filter(car -> CarStatus.BENCH.equals(car.getStatus()))
+                    .collect(Collectors.toList());
+
+            System.out.println(freeCar);
 
 
             time++;

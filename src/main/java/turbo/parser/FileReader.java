@@ -1,7 +1,9 @@
 package turbo.parser;
 
 import javafx.util.Pair;
+import turbo.Position;
 import turbo.Ride;
+import turbo.RideStatus;
 import turbo.StartingInfo;
 
 import java.io.BufferedReader;
@@ -22,7 +24,7 @@ public class FileReader {
         return startingInfo;
     }
 
-    private List<Ride> rides = new LinkedList<Ride>();
+    private List<Ride> rides = new LinkedList<>();
 
     public FileReader(String fileName) throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -55,8 +57,9 @@ public class FileReader {
         String[] split = firstLine.split(" ");
         Ride ride = new Ride(new Integer(split[4]),
                 new Integer(split[5]),
-                new Pair<Integer, Integer>(new Integer(split[0]), new Integer(split[1])),
-                new Pair<Integer, Integer>(new Integer(split[2]), new Integer(split[3])));
+                new Position(new Integer(split[0]), new Integer(split[1])),
+                new Position(new Integer(split[2]), new Integer(split[3])),
+                RideStatus.WAITING_FOR_CAR);
         return ride;
     }
 }
