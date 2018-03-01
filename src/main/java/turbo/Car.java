@@ -20,7 +20,9 @@ public class Car {
     private CarStatus status = CarStatus.BENCH;
 
     public void moveToTarget(Position targetPosition, Integer time) {
-        moveHorizontal(targetPosition);
+        if (status.equals(IN_RIDE)) {
+            moveHorizontal(targetPosition);
+        }
 
         if (assignedRide.getRideStatus().equals(DURING_RIDE) && position.equals(assignedRide.getFinishPoint())) {
             setStatus(CarStatus.BENCH);
